@@ -13,7 +13,11 @@ var padIPv6 = function (ip) {
     .map(function (x) {
         return Array(4-x.length).fill('0').join("") + x;
     })
-    .join(':');
+    .join(':')
+    .replace(/^.*$/, function (all) {
+        while (all.length < 39) { all += ":0000"; }
+        return all;
+    });
 };
 
 module.exports = padIPv6;
